@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dibs But Better</title>
+    <meta charset="utf-8">
+
+    <link rel='stylesheet' type='text/css' href='styesheet.css'>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  </head>
+
+  <body>
+    <div class="jumbotron text-center">
+      <h1>D!Bs Booking System</h1>
+      <p>But Better</p>
+    </div>
+
+    <!--33 rooms total, time slots from 7:30 - 11:30 -->
+    <div class="calendar" id="theCalendar">
+      <div id="blankSlot"></div>
+      <div class="topColumn">7:30-8:30</div>
+      <div class="topColumn">8:30-9:30</div>
+      <div class="topColumn">9:30-10:30</div>
+      <div class="topColumn">10:30-11:30</div>
+      <div class="topColumn">11:30-12:30</div>
+      <div class="topColumn">12:30-1:30</div>
+      <div class="topColumn">1:30-2:30</div>
+      <div class="topColumn">2:30-3:30</div>
+      <div class="topColumn">3:30-4:30</div>
+      <div class="topColumn">4:30-5:30</div>
+      <div class="topColumn">5:30-6:30</div>
+      <div class="topColumn">6:30-7:30</div>
+      <div class="topColumn">7:30-8:30</div>
+      <div class="topColumn">8:30-9:30</div>
+      <div class="topColumn">9:30-10:30</div>
+      <div class="topColumn">10:30-11:30</div>
+
+      <!--Small Rooms-->
+      <div class="small-room">Room 104</div>
+        <!--<div onclick="changeColour('s17')" class="slot" id="s17"></div>-->
+        <div class="slot" id="r104t0"></div>
+        <div class="slot" id="r104t1"></div>
+        <div class="slot" id="r104t2"></div>
+        <div class="slot" id="r104t3"></div>
+        <div class="slot" id="r104t4"></div>
+        <div class="slot" id="r104t5"></div>
+        <div class="slot" id="r104t6"></div>
+        <div class="slot" id="r104t7"></div>
+        <div class="slot" id="r104t8"></div>
+        <div class="slot" id="r104t9"></div>
+        <div class="slot" id="r104tA"></div>
+        <div class="slot" id="r104tB"></div>
+        <div class="slot" id="r104tC"></div>
+        <div class="slot" id="r104tD"></div>
+        <div class="slot" id="r104tE"></div>
+        <div class="slot" id="r104tF"></div>
+
+
+      <div class="small-room">Room 105</div>
+        <div class="slot" id="r105t0"></div>
+        <div class="slot" id="r105t1"></div>
+        <div class="slot" id="r105t2"></div>
+        <div class="slot" id="r105t3"></div>
+        <div class="slot" id="r105t4"></div>
+        <div class="slot" id="r105t5"></div>
+        <div class="slot" id="r105t6"></div>
+        <div class="slot" id="r105t7"></div>
+        <div class="slot" id="r105t8"></div>
+        <div class="slot" id="r105t9"></div>
+        <div class="slot" id="r105tA"></div>
+        <div class="slot" id="r105tB"></div>
+        <div class="slot" id="r105tC"></div>
+        <div class="slot" id="r105tD"></div>
+        <div class="slot" id="r105tE"></div>
+        <div class="slot" id="r105tF"></div>
+
+      <div class="small-room">Room 116</div>
+        <div class="slot" id="r116t0"></div>
+        <div class="slot" id="r116t1"></div>
+        <div class="slot" id="r116t2"></div>
+        <div class="slot" id="r116t3"></div>
+        <div class="slot" id="r116t4"></div>
+        <div class="slot" id="r116t5"></div>
+        <div class="slot" id="r116t6"></div>
+        <div class="slot" id="r116t7"></div>
+        <div class="slot" id="r116t8"></div>
+        <div class="slot" id="r116t9"></div>
+        <div class="slot" id="r116tA"></div>
+        <div class="slot" id="r116tB"></div>
+        <div class="slot" id="r116tC"></div>
+        <div class="slot" id="r116tD"></div>
+        <div class="slot" id="r116tE"></div>
+        <div class="slot" id="r116tF"></div>
+
+      <div class="small-room">Room 117</div>
+        <div class="slot" id="r117t0"></div>
+        <div class="slot" id="r117t1"></div>
+        <div class="slot" id="r117t2"></div>
+        <div class="slot" id="r117t3"></div>
+        <div class="slot" id="r117t4"></div>
+        <div class="slot" id="r117t5"></div>
+        <div class="slot" id="r117t6"></div>
+        <div class="slot" id="r117t7"></div>
+        <div class="slot" id="r117t8"></div>
+        <div class="slot" id="r117t9"></div>
+        <div class="slot" id="r117tA"></div>
+        <div class="slot" id="r117tB"></div>
+        <div class="slot" id="r117tC"></div>
+        <div class="slot" id="r117tD"></div>
+        <div class="slot" id="r117tE"></div>
+        <div class="slot" id="r117tF"></div>
+
+      <div class="small-room">Room 118</div>
+        <div class="slot" id="r118t0"></div>
+        <div class="slot" id="r118t1"></div>
+        <div class="slot" id="r118t2"></div>
+        <div class="slot" id="r118t3"></div>
+        <div class="slot" id="r118t4"></div>
+        <div class="slot" id="r118t5"></div>
+        <div class="slot" id="r118t6"></div>
+        <div class="slot" id="r118t7"></div>
+        <div class="slot" id="r118t8"></div>
+        <div class="slot" id="r118t9"></div>
+        <div class="slot" id="r118tA"></div>
+        <div class="slot" id="r118tB"></div>
+        <div class="slot" id="r118tC"></div>
+        <div class="slot" id="r118tD"></div>
+        <div class="slot" id="r118tE"></div>
+        <div class="slot" id="r118tF"></div>
+
+      <div class="small-room">Room 119</div>
+        <div class="slot" id="r119t0"></div>
+        <div class="slot" id="r119t1"></div>
+        <div class="slot" id="r119t2"></div>
+        <div class="slot" id="r119t3"></div>
+        <div class="slot" id="r119t4"></div>
+        <div class="slot" id="r119t5"></div>
+        <div class="slot" id="r119t6"></div>
+        <div class="slot" id="r119t7"></div>
+        <div class="slot" id="r119t8"></div>
+        <div class="slot" id="r119t9"></div>
+        <div class="slot" id="r119tA"></div>
+        <div class="slot" id="r119tB"></div>
+        <div class="slot" id="r119tC"></div>
+        <div class="slot" id="r119tD"></div>
+        <div class="slot" id="r119tE"></div>
+        <div class="slot" id="r119tF"></div>
+
+      <div class="small-room">Room 131</div>
+        <div class="slot" id="r131t0"></div>
+        <div class="slot" id="r131t1"></div>
+        <div class="slot" id="r131t2"></div>
+        <div class="slot" id="r131t3"></div>
+        <div class="slot" id="r131t4"></div>
+        <div class="slot" id="r131t5"></div>
+        <div class="slot" id="r131t6"></div>
+        <div class="slot" id="r131t7"></div>
+        <div class="slot" id="r131t8"></div>
+        <div class="slot" id="r131t9"></div>
+        <div class="slot" id="r131tA"></div>
+        <div class="slot" id="r131tB"></div>
+        <div class="slot" id="r131tC"></div>
+        <div class="slot" id="r131tD"></div>
+        <div class="slot" id="r131tE"></div>
+        <div class="slot" id="r131tF"></div>
+
+      <div class="small-room">Room 222</div>
+        <div class="slot" id="r222t0"></div>
+        <div class="slot" id="r222t1"></div>
+        <div class="slot" id="r222t2"></div>
+        <div class="slot" id="r222t3"></div>
+        <div class="slot" id="r222t4"></div>
+        <div class="slot" id="r222t5"></div>
+        <div class="slot" id="r222t6"></div>
+        <div class="slot" id="r222t7"></div>
+        <div class="slot" id="r222t8"></div>
+        <div class="slot" id="r222t9"></div>
+        <div class="slot" id="r222tA"></div>
+        <div class="slot" id="r222tB"></div>
+        <div class="slot" id="r222tC"></div>
+        <div class="slot" id="r222tD"></div>
+        <div class="slot" id="r222tE"></div>
+        <div class="slot" id="r222tF"></div>
+
+      <div class="small-room">Room 224</div>
+        <div class="slot" id="r224t0"></div>
+        <div class="slot" id="r224t1"></div>
+        <div class="slot" id="r224t2"></div>
+        <div class="slot" id="r224t3"></div>
+        <div class="slot" id="r224t4"></div>
+        <div class="slot" id="r224t5"></div>
+        <div class="slot" id="r224t6"></div>
+        <div class="slot" id="r224t7"></div>
+        <div class="slot" id="r224t8"></div>
+        <div class="slot" id="r224t9"></div>
+        <div class="slot" id="r224tA"></div>
+        <div class="slot" id="r224tB"></div>
+        <div class="slot" id="r224tC"></div>
+        <div class="slot" id="r224tD"></div>
+        <div class="slot" id="r224tE"></div>
+        <div class="slot" id="r224tF"></div>
+
+      <div class="small-room">Room 230</div>
+        <div class="slot" id="r230t0"></div>
+        <div class="slot" id="r230t1"></div>
+        <div class="slot" id="r230t2"></div>
+        <div class="slot" id="r230t3"></div>
+        <div class="slot" id="r230t4"></div>
+        <div class="slot" id="r230t5"></div>
+        <div class="slot" id="r230t6"></div>
+        <div class="slot" id="r230t7"></div>
+        <div class="slot" id="r230t8"></div>
+        <div class="slot" id="r230t9"></div>
+        <div class="slot" id="r230tA"></div>
+        <div class="slot" id="r230tB"></div>
+        <div class="slot" id="r230tC"></div>
+        <div class="slot" id="r230tD"></div>
+        <div class="slot" id="r230tE"></div>
+        <div class="slot" id="r230tF"></div>
+
+      <div class="small-room">Room 318</div>
+        <div class="slot" id="r318t0"></div>
+        <div class="slot" id="r318t1"></div>
+        <div class="slot" id="r318t2"></div>
+        <div class="slot" id="r318t3"></div>
+        <div class="slot" id="r318t4"></div>
+        <div class="slot" id="r318t5"></div>
+        <div class="slot" id="r318t6"></div>
+        <div class="slot" id="r318t7"></div>
+        <div class="slot" id="r318t8"></div>
+        <div class="slot" id="r318t9"></div>
+        <div class="slot" id="r318tA"></div>
+        <div class="slot" id="r318tB"></div>
+        <div class="slot" id="r318tC"></div>
+        <div class="slot" id="r318tD"></div>
+        <div class="slot" id="r318tE"></div>
+        <div class="slot" id="r318tF"></div>
+
+      <div class="small-room">Room 320</div>
+        <div class="slot" id="r320t0"></div>
+        <div class="slot" id="r320t1"></div>
+        <div class="slot" id="r320t2"></div>
+        <div class="slot" id="r320t3"></div>
+        <div class="slot" id="r320t4"></div>
+        <div class="slot" id="r320t5"></div>
+        <div class="slot" id="r320t6"></div>
+        <div class="slot" id="r320t7"></div>
+        <div class="slot" id="r320t8"></div>
+        <div class="slot" id="r320t9"></div>
+        <div class="slot" id="r320tA"></div>
+        <div class="slot" id="r320tB"></div>
+        <div class="slot" id="r320tC"></div>
+        <div class="slot" id="r320tD"></div>
+        <div class="slot" id="r320tE"></div>
+        <div class="slot" id="r320tF"></div>
+
+      <div class="small-room">Room 324</div>
+        <div class="slot" id="r324t0"></div>
+        <div class="slot" id="r324t1"></div>
+        <div class="slot" id="r324t2"></div>
+        <div class="slot" id="r324t3"></div>
+        <div class="slot" id="r324t4"></div>
+        <div class="slot" id="r324t5"></div>
+        <div class="slot" id="r324t6"></div>
+        <div class="slot" id="r324t7"></div>
+        <div class="slot" id="r324t8"></div>
+        <div class="slot" id="r324t9"></div>
+        <div class="slot" id="r324tA"></div>
+        <div class="slot" id="r324tB"></div>
+        <div class="slot" id="r324tC"></div>
+        <div class="slot" id="r324tD"></div>
+        <div class="slot" id="r324tE"></div>
+        <div class="slot" id="r324tF"></div>
+
+      <div class="small-room">Room 325</div>
+        <div class="slot" id="r325t0"></div>
+        <div class="slot" id="r325t1"></div>
+        <div class="slot" id="r325t2"></div>
+        <div class="slot" id="r325t3"></div>
+        <div class="slot" id="r325t4"></div>
+        <div class="slot" id="r325t5"></div>
+        <div class="slot" id="r325t6"></div>
+        <div class="slot" id="r325t7"></div>
+        <div class="slot" id="r325t8"></div>
+        <div class="slot" id="r325t9"></div>
+        <div class="slot" id="r325tA"></div>
+        <div class="slot" id="r325tB"></div>
+        <div class="slot" id="r325tC"></div>
+        <div class="slot" id="r325tD"></div>
+        <div class="slot" id="r325tE"></div>
+        <div class="slot" id="r325tF"></div>
+
+      <div class="small-room">Room 327</div>
+        <div class="slot" id="r327t0"></div>
+        <div class="slot" id="r327t1"></div>
+        <div class="slot" id="r327t2"></div>
+        <div class="slot" id="r327t3"></div>
+        <div class="slot" id="r327t4"></div>
+        <div class="slot" id="r327t5"></div>
+        <div class="slot" id="r327t6"></div>
+        <div class="slot" id="r327t7"></div>
+        <div class="slot" id="r327t8"></div>
+        <div class="slot" id="r327t9"></div>
+        <div class="slot" id="r327tA"></div>
+        <div class="slot" id="r327tB"></div>
+        <div class="slot" id="r327tC"></div>
+        <div class="slot" id="r327tD"></div>
+        <div class="slot" id="r327tE"></div>
+        <div class="slot" id="r327tF"></div>
+
+      <div class="small-room">Room 329</div>
+        <div class="slot" id="r329t0"></div>
+        <div class="slot" id="r329t1"></div>
+        <div class="slot" id="r329t2"></div>
+        <div class="slot" id="r329t3"></div>
+        <div class="slot" id="r329t4"></div>
+        <div class="slot" id="r329t5"></div>
+        <div class="slot" id="r329t6"></div>
+        <div class="slot" id="r329t7"></div>
+        <div class="slot" id="r329t8"></div>
+        <div class="slot" id="r329t9"></div>
+        <div class="slot" id="r329tA"></div>
+        <div class="slot" id="r329tB"></div>
+        <div class="slot" id="r329tC"></div>
+        <div class="slot" id="r329tD"></div>
+        <div class="slot" id="r329tE"></div>
+        <div class="slot" id="r329tF"></div>
+
+      <div class="small-room">Room 330</div>
+		<div class="slot" id="r330t0"></div>
+        <div class="slot" id="r330t1"></div>
+        <div class="slot" id="r330t2"></div>
+        <div class="slot" id="r330t3"></div>
+        <div class="slot" id="r330t4"></div>
+        <div class="slot" id="r330t5"></div>
+        <div class="slot" id="r330t6"></div>
+        <div class="slot" id="r330t7"></div>
+        <div class="slot" id="r330t8"></div>
+        <div class="slot" id="r330t9"></div>
+        <div class="slot" id="r330tA"></div>
+        <div class="slot" id="r330tB"></div>
+        <div class="slot" id="r330tC"></div>
+        <div class="slot" id="r330tD"></div>
+        <div class="slot" id="r330tE"></div>
+        <div class="slot" id="r330tF"></div>
+
+      <!--Medium Rooms-->
+      <div class="medium-room">Room 112</div>
+        <div class="slot" id="r112t0"></div>
+        <div class="slot" id="r112t1"></div>
+        <div class="slot" id="r112t2"></div>
+        <div class="slot" id="r112t3"></div>
+        <div class="slot" id="r112t4"></div>
+        <div class="slot" id="r112t5"></div>
+        <div class="slot" id="r112t6"></div>
+        <div class="slot" id="r112t7"></div>
+        <div class="slot" id="r112t8"></div>
+        <div class="slot" id="r112t9"></div>
+        <div class="slot" id="r112tA"></div>
+        <div class="slot" id="r112tB"></div>
+        <div class="slot" id="r112tC"></div>
+        <div class="slot" id="r112tD"></div>
+        <div class="slot" id="r112tE"></div>
+        <div class="slot" id="r112tF"></div>
+
+      <div class="medium-room">Room 227</div>
+        <div class="slot" id="r227t0"></div>
+        <div class="slot" id="r227t1"></div>
+        <div class="slot" id="r227t2"></div>
+        <div class="slot" id="r227t3"></div>
+        <div class="slot" id="r227t4"></div>
+        <div class="slot" id="r227t5"></div>
+        <div class="slot" id="r227t6"></div>
+        <div class="slot" id="r227t7"></div>
+        <div class="slot" id="r227t8"></div>
+        <div class="slot" id="r227t9"></div>
+        <div class="slot" id="r227tA"></div>
+        <div class="slot" id="r227tB"></div>
+        <div class="slot" id="r227tC"></div>
+        <div class="slot" id="r227tD"></div>
+        <div class="slot" id="r227tE"></div>
+        <div class="slot" id="r227tF"></div>
+
+      <div class="medium-room">Room 231</div>
+        <div class="slot" id="r231t0"></div>
+        <div class="slot" id="r231t1"></div>
+        <div class="slot" id="r231t2"></div>
+        <div class="slot" id="r231t3"></div>
+        <div class="slot" id="r231t4"></div>
+        <div class="slot" id="r231t5"></div>
+        <div class="slot" id="r231t6"></div>
+        <div class="slot" id="r231t7"></div>
+        <div class="slot" id="r231t8"></div>
+        <div class="slot" id="r231t9"></div>
+        <div class="slot" id="r231tA"></div>
+        <div class="slot" id="r231tB"></div>
+        <div class="slot" id="r231tC"></div>
+        <div class="slot" id="r231tD"></div>
+        <div class="slot" id="r231tE"></div>
+        <div class="slot" id="r231tF"></div>
+
+      <div class="medium-room">Room 317</div>
+        <div class="slot" id="r317t0"></div>
+        <div class="slot" id="r317t1"></div>
+        <div class="slot" id="r317t2"></div>
+        <div class="slot" id="r317t3"></div>
+        <div class="slot" id="r317t4"></div>
+        <div class="slot" id="r317t5"></div>
+        <div class="slot" id="r317t6"></div>
+        <div class="slot" id="r317t7"></div>
+        <div class="slot" id="r317t8"></div>
+        <div class="slot" id="r317t9"></div>
+        <div class="slot" id="r317tA"></div>
+        <div class="slot" id="r317tB"></div>
+        <div class="slot" id="r317tC"></div>
+        <div class="slot" id="r317tD"></div>
+        <div class="slot" id="r317tE"></div>
+        <div class="slot" id="r317tF"></div>
+
+      <!--Large Rooms-->
+      <div class="large-room">Room 113</div>
+        <div class="slot" id="r113t0"></div>
+        <div class="slot" id="r113113t1"></div>
+        <div class="slot" id="r113t2"></div>
+        <div class="slot" id="r113t3"></div>
+        <div class="slot" id="r113t4"></div>
+        <div class="slot" id="r113t5"></div>
+        <div class="slot" id="r113t6"></div>
+        <div class="slot" id="r113t7"></div>
+        <div class="slot" id="r113t8"></div>
+        <div class="slot" id="r113t9"></div>
+        <div class="slot" id="r113tA"></div>
+        <div class="slot" id="r113tB"></div>
+        <div class="slot" id="r113tC"></div>
+        <div class="slot" id="r113tD"></div>
+        <div class="slot" id="r113tE"></div>
+        <div class="slot" id="r113tF"></div>
+
+      <div class="large-room">Room 114</div>
+        <div class="slot" id="r114t0"></div>
+        <div class="slot" id="r114t1"></div>
+        <div class="slot" id="r114t2"></div>
+        <div class="slot" id="r114t3"></div>
+        <div class="slot" id="r114t4"></div>
+        <div class="slot" id="r114t5"></div>
+        <div class="slot" id="r114t6"></div>
+        <div class="slot" id="r114t7"></div>
+        <div class="slot" id="r114t8"></div>
+        <div class="slot" id="r114t9"></div>
+        <div class="slot" id="r114tA"></div>
+        <div class="slot" id="r114tB"></div>
+        <div class="slot" id="r114tC"></div>
+        <div class="slot" id="r114tD"></div>
+        <div class="slot" id="r114tE"></div>
+        <div class="slot" id="r114tF"></div>
+
+      <div class="large-room">Room 128</div>
+        <div class="slot" id="r128t0"></div>
+        <div class="slot" id="r128t1"></div>
+        <div class="slot" id="r128t2"></div>
+        <div class="slot" id="r128t3"></div>
+        <div class="slot" id="r128t4"></div>
+        <div class="slot" id="r128t5"></div>
+        <div class="slot" id="r128t6"></div>
+        <div class="slot" id="r128t7"></div>
+        <div class="slot" id="r128t8"></div>
+        <div class="slot" id="r128t9"></div>
+        <div class="slot" id="r128tA"></div>
+        <div class="slot" id="r128tB"></div>
+        <div class="slot" id="r128tC"></div>
+        <div class="slot" id="r128tD"></div>
+        <div class="slot" id="r128tE"></div>
+        <div class="slot" id="r128tF"></div>
+
+      <div class="large-room">Room 129</div>
+        <div class="slot" id="r129t0"></div>
+        <div class="slot" id="r129t1"></div>
+        <div class="slot" id="r129t2"></div>
+        <div class="slot" id="r129t3"></div>
+        <div class="slot" id="r129t4"></div>
+        <div class="slot" id="r129t5"></div>
+        <div class="slot" id="r129t6"></div>
+        <div class="slot" id="r129t7"></div>
+        <div class="slot" id="r129t8"></div>
+        <div class="slot" id="r129t9"></div>
+        <div class="slot" id="r129tA"></div>
+        <div class="slot" id="r129tB"></div>
+        <div class="slot" id="r129tC"></div>
+        <div class="slot" id="r129tD"></div>
+        <div class="slot" id="r129tE"></div>
+        <div class="slot" id="r129tF"></div>
+
+      <div class="large-room">Room 130</div>
+        <div class="slot" id="r130t0"></div>
+        <div class="slot" id="r130t1"></div>
+        <div class="slot" id="r130t2"></div>
+        <div class="slot" id="r130t3"></div>
+        <div class="slot" id="r130t4"></div>
+        <div class="slot" id="r130t5"></div>
+        <div class="slot" id="r130t6"></div>
+        <div class="slot" id="r130t7"></div>
+        <div class="slot" id="r130t8"></div>
+        <div class="slot" id="r130t9"></div>
+        <div class="slot" id="r130tA"></div>
+        <div class="slot" id="r130tB"></div>
+        <div class="slot" id="r130tC"></div>
+        <div class="slot" id="r130tD"></div>
+        <div class="slot" id="r130tE"></div>
+        <div class="slot" id="r130tF"></div>
+
+      <div class="large-room">Room 220</div>
+        <div class="slot" id="r220t0"></div>
+        <div class="slot" id="r220t1"></div>
+        <div class="slot" id="r220t2"></div>
+        <div class="slot" id="r220t3"></div>
+        <div class="slot" id="r220t4"></div>
+        <div class="slot" id="r220t5"></div>
+        <div class="slot" id="r220t6"></div>
+        <div class="slot" id="r220t7"></div>
+        <div class="slot" id="r220t8"></div>
+        <div class="slot" id="r220t9"></div>
+        <div class="slot" id="r220tA"></div>
+        <div class="slot" id="r220tB"></div>
+        <div class="slot" id="r220tC"></div>
+        <div class="slot" id="r220tD"></div>
+        <div class="slot" id="r220tE"></div>
+        <div class="slot" id="r220tF"></div>
+
+      <div class="large-room">Room 228</div>
+        <div class="slot" id="r228t0"></div>
+        <div class="slot" id="r228t1"></div>
+        <div class="slot" id="r228t2"></div>
+        <div class="slot" id="r228t3"></div>
+        <div class="slot" id="r228t4"></div>
+        <div class="slot" id="r228t5"></div>
+        <div class="slot" id="r228t6"></div>
+        <div class="slot" id="r228t7"></div>
+        <div class="slot" id="r228t8"></div>
+        <div class="slot" id="r228t9"></div>
+        <div class="slot" id="r228tA"></div>
+        <div class="slot" id="r228tB"></div>
+        <div class="slot" id="r228tC"></div>
+        <div class="slot" id="r228tD"></div>
+        <div class="slot" id="r228tE"></div>
+        <div class="slot" id="r228tF"></div>
+
+      <div class="large-room">Room 229</div>
+        <div class="slot" id="r229t0"></div>
+        <div class="slot" id="r229t1"></div>
+        <div class="slot" id="r229t2"></div>
+        <div class="slot" id="r229t3"></div>
+        <div class="slot" id="r229t4"></div>
+        <div class="slot" id="r229t5"></div>
+        <div class="slot" id="r229t6"></div>
+        <div class="slot" id="r229t7"></div>
+        <div class="slot" id="r229t8"></div>
+        <div class="slot" id="r229t9"></div>
+        <div class="slot" id="r229tA"></div>
+        <div class="slot" id="r229tB"></div>
+        <div class="slot" id="r229tC"></div>
+        <div class="slot" id="r229tD"></div>
+        <div class="slot" id="r229tE"></div>
+        <div class="slot" id="r229tF"></div>
+
+      <div class="large-room">Room 319</div>
+        <div class="slot" id="r319t0"></div>
+        <div class="slot" id="r319t1"></div>
+        <div class="slot" id="r319t2"></div>
+        <div class="slot" id="r319t3"></div>
+        <div class="slot" id="r319t4"></div>
+        <div class="slot" id="r319t5"></div>
+        <div class="slot" id="r319t6"></div>
+        <div class="slot" id="r319t7"></div>
+        <div class="slot" id="r319t8"></div>
+        <div class="slot" id="r319t9"></div>
+        <div class="slot" id="r319tA"></div>
+        <div class="slot" id="r319tB"></div>
+        <div class="slot" id="r319tC"></div>
+        <div class="slot" id="r319tD"></div>
+        <div class="slot" id="r319tE"></div>
+        <div class="slot" id="r319tF"></div>
+
+      <div class="large-room">Room 321</div>
+        <div class="slot" id="r321t0"></div>
+        <div class="slot" id="r321t1"></div>
+        <div class="slot" id="r321t2"></div>
+        <div class="slot" id="r321t3"></div>
+        <div class="slot" id="r321t4"></div>
+        <div class="slot" id="r321t5"></div>
+        <div class="slot" id="r321t6"></div>
+        <div class="slot" id="r321t7"></div>
+        <div class="slot" id="r321t8"></div>
+        <div class="slot" id="r321t9"></div>
+        <div class="slot" id="r321tA"></div>
+        <div class="slot" id="r321tB"></div>
+        <div class="slot" id="r321tC"></div>
+        <div class="slot" id="r321tD"></div>
+        <div class="slot" id="r321tE"></div>
+        <div class="slot" id="r117tF"></div>
+
+      <div class="large-room">Room 331</div>
+        <div class="slot" id="r331t0"></div>
+        <div class="slot" id="r331t1"></div>
+        <div class="slot" id="r331t2"></div>
+        <div class="slot" id="r331t3"></div>
+        <div class="slot" id="r331t4"></div>
+        <div class="slot" id="r331t5"></div>
+        <div class="slot" id="r331t6"></div>
+        <div class="slot" id="r331t7"></div>
+        <div class="slot" id="r331t8"></div>
+        <div class="slot" id="r331t9"></div>
+        <div class="slot" id="r331tA"></div>
+        <div class="slot" id="r331tB"></div>
+        <div class="slot" id="r331tC"></div>
+        <div class="slot" id="r331tD"></div>
+        <div class="slot" id="r331tE"></div>
+        <div class="slot" id="r331tF"></div>
+
+      <!--XL Room-->
+      <div class="xlarge-room">Room 111</div>
+        <div class="slot" id="r111t0"></div>
+        <div class="slot" id="r111t1"></div>
+        <div class="slot" id="r111t2"></div>
+        <div class="slot" id="r111t3"></div>
+        <div class="slot" id="r111t4"></div>
+        <div class="slot" id="r111t5"></div>
+        <div class="slot" id="r111t6"></div>
+        <div class="slot" id="r111t7"></div>
+        <div class="slot" id="r111t8"></div>
+        <div class="slot" id="r111t9"></div>
+        <div class="slot" id="r111tA"></div>
+        <div class="slot" id="r111tB"></div>
+        <div class="slot" id="r111tC"></div>
+        <div class="slot" id="r111tD"></div>
+        <div class="slot" id="r111tE"></div>
+        <div class="slot" id="r111tF"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+
+
+</html>
