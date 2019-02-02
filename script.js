@@ -9,12 +9,18 @@ theParent.addEventListener("click", clickReact, false);
 
 function clickReact(e){
   if (e.target != e.currentTarget && e.target.className == 'slot') {
-    if(slotsBooked < 3){
-      slotsBooked++;
-      e.target.style.backgroundColor = "red";
+    if(e.target.style.backgroundColor == 'red'){
+      e.target.style.backgroundColor = 'green';
+      slotsBooked--;
     }
     else{
-      alert("D!bs only allows you to have 3 hours reserved at a time")
+      if(slotsBooked < 3){
+        slotsBooked++;
+        e.target.style.backgroundColor = 'red';
+      }
+      else{
+        alert("D!bs only allows you to have 3 hours reserved at a time")
+      }
     }
 
     // alert("hello " + e.target.id + " poop " + e.target.className);
