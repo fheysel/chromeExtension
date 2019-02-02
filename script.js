@@ -1,7 +1,7 @@
 var slotsBooked = 0;
 
 function updateColour(slot){
-  slot.backgroundColor = "red";
+  slot.backgroundColor = "yellow";
 }
 
 var theParent = document.getElementById("theCalendar");
@@ -9,14 +9,14 @@ theParent.addEventListener("click", clickReact, false);
 
 function clickReact(e){
   if (e.target != e.currentTarget && e.target.className == 'slot') {
-    if(e.target.style.backgroundColor == 'red'){
+    if(e.target.style.backgroundColor == 'yellow'){
       e.target.style.backgroundColor = 'green';
       slotsBooked--;
     }
     else{
       if(slotsBooked < 3){
         slotsBooked++;
-        e.target.style.backgroundColor = 'red';
+        e.target.style.backgroundColor = 'yellow';
       }
       else{
         alert("D!bs only allows you to have 3 hours reserved at a time")
@@ -27,41 +27,6 @@ function clickReact(e){
   }
   e.stopPropagation;
 }
-
-var request = new XMLHttpRequest();
-
-request.open('GET', 'https://ghibliapi.herokuapp.com/films', true);
-request.onload = function () {
-
-  // Begin accessing JSON data here
-  var data = JSON.parse(this.response);
-
-  if (request.status >= 200 && request.status < 400) {
-    data.forEach(movie => {
-      console.log(movie.title);
-    });
-  } else {
-    console.log('error');
-  }
-}
-
-request.send();
-
-var request2 = new XMLHttpRequest();
-
-request2.open('GET', 'https://queensu.evanced.info/dibsAPI/reservations/2019-01-06/3', true);
-request2.onload = function (){
-  var data2 = JSON.parse(this.response);
-  if (request.status >= 200 && request.status < 400) {
-    data2.forEach(StartTimeHour => {
-      console.log(StartTimeHour.title);
-    });
-  } else {
-    console.log('error');
-  }
-}
-
-request2.send();
 
 
 
@@ -105,17 +70,22 @@ for(i=0; i<14; i++){
 
 //////////////////////API//////////////////////////////////////
 $(document).ready(function () {
-    $.getJSON("https://queensu.evanced.info/dibsAPI/reservations/2-2-2019/3",
-        function processData(jsonData) {
+    var roomID = 3;
+    var dayOfSearch = "2-2-2019";
+    for(roomID=1; roomID < 41; roomID++){
+      $.getJSON("https://queensu.evanced.info/dibsAPI/reservations/"+dayOfSearch+ "/"+roomID,
+          function processData(jsonData) {
 
-            // Loop through each data block
-            $.each(jsonData, function (object, objectData) {
+              // Loop through each data block
+              $.each(jsonData, function (object, objectData) {
 
-                $('#roomBlock').append("Room ID: " + objectData.RoomID + "<br />");
-                $('#roomBlock').append("Room Name:" + objectData.SpaceName + "<br />")
-                $('#roomBlock').append("Start Time: " + objectData.StartTime + "<br />");
-                $('#roomBlock').append("End Time: " + objectData.EndTime + "<br />");
-                $('#roomBlock').append("<br />");
-            });
-        });
+                  $('#roomBlock').append("Room ID: " + objectData.RoomID + "<br />");
+                  $('#roomBlock').append("Room Name:" + objectData.SpaceName + "<br />")
+                  $('#roomBlock').append("Start Time: " + objectData.StartTime + "<br />");
+                  $('#roomBlock').append("End Time: " + objectData.EndTime + "<br />");
+                  $('#roomBlock').append("<br />");
+              });
+          });
+    }
+
 });
