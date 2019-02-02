@@ -101,3 +101,21 @@ for(i=0; i<14; i++){
    // then append it to the select element
    newSelect.appendChild(opt);
 }
+
+
+//////////////////////API//////////////////////////////////////
+$(document).ready(function () {
+    $.getJSON("https://queensu.evanced.info/dibsAPI/reservations/2-2-2019/3",
+        function processData(jsonData) {
+
+            // Loop through each data block
+            $.each(jsonData, function (object, objectData) {
+
+                $('#roomBlock').append("Room ID: " + objectData.RoomID + "<br />");
+                $('#roomBlock').append("Room Name:" + objectData.SpaceName + "<br />")
+                $('#roomBlock').append("Start Time: " + objectData.StartTime + "<br />");
+                $('#roomBlock').append("End Time: " + objectData.EndTime + "<br />");
+                $('#roomBlock').append("<br />");
+            });
+        });
+});
