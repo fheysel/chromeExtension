@@ -55,16 +55,17 @@ for(i=0; i<14; i++){
   //document.body.innerHTML = dateArray[i];
 }
 
-var newSelect=document.getElementById("selector");
+var newSelect = document.getElementById("selector");
 
 for(i=0; i<14; i++){
-  var opt = document.createElement("option");
-   opt.value= dateArray[i];
-   opt.innerHTML = dateArray[i]; // whatever property it has
+  newSelect[i].label = dateArray[i];
+  // var opt = document.createElement("option");
+  //  opt.value = dateArray[i];
+  //  opt.innerHTML = dateArray[i]; // whatever property it has
    console.log(dateArray[i]);
 
    // then append it to the select element
-   newSelect.appendChild(opt);
+   //newSelect.appendChild(opt);
 }
 
 
@@ -73,12 +74,15 @@ var selectorButton = document.getElementById("selectorButton");
 selectorButton.addEventListener("click", newDay, false);
 
 function newDay(e){
-  var selected = document.getElementById('dateSelector');
-  var dateSelected = selected.value;
+  var selector = document.getElementById('selector');
+  var selected = selector.options[selector.selectedIndex].label;
 
-    $('#roomBlock').append("Selected: " + dateSelected + "<br />");
-
-  loadNewDay("2-7-2019");
+  var dateSelected = new Date(selected);
+  var date = dateSelected.getDate();
+  var month = dateSelected.getMonth() + 1; //Months are zero based
+  var year = dateSelected.getFullYear();
+  var formattedDate = month + "-" + date + "-" + year;
+  loadNewDay(formattedDate);
   e.stopPropagation;
 }
 
@@ -91,20 +95,21 @@ function loadNewDay(day){
     }
   }
 
-  var roomID;
+  var roomID = 1;
   var parsedStartTime;
   var parsedEndTime;
   var blocks;
   var slotID;
   var roomHalf;
   var i;
+  var dayString = day.toString();
 
 
-  $('#roomBlock').append("Day selected: " + day + "<br />");
+//  $('#roomBlock').append("Day selected: " + dayString + "<br />");
+
   for(roomID=1; roomID < 41; roomID++){
-    $.getJSON("https://queensu.evanced.info/dibsAPI/reservations/"+day+ "/"+roomID,
+    $.getJSON("https://queensu.evanced.info/dibsAPI/reservations/"+dayString+"/"+roomID,
         function processData(jsonData) {
-
             // Loop through each data block
             $.each(jsonData, function (object, objectData) {
                 parsedStartTime = objectData.StartTime.slice(11, 13) - 7;//earliest booking is at 7
@@ -116,6 +121,7 @@ function loadNewDay(day){
                 for(i = parsedStartTime; i<=parsedEndTime; i++){
                     slotID = roomHalf + "t" + i;
                     elem = document.getElementById(slotID);
+
                     if(elem != null){
                       elem.style.backgroundColor = "red";
                     }
