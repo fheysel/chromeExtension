@@ -1,7 +1,10 @@
-var slotsBooked = 0;
+///////////////////CALENDAR//////////////////////
 
-function updateColour(slot){
-  slot.backgroundColor = "yellow";
+var slotsBooked = 0;
+var column = null;
+
+function makePending(slot){
+  slot.style.backgroundColor = 'yellow';
 }
 
 var theParent = document.getElementById("theCalendar");
@@ -16,10 +19,23 @@ function clickReact(e){
     else if(e.target.style.backgroundColor == 'red'){
       //do nothing
     }
-    else{
+    else{//therefore green
       if(slotsBooked < 3){
-        slotsBooked++;
-        e.target.style.backgroundColor = 'yellow';
+        if(slotsBooked == 0){
+          slotsBooked++;
+          column = e.target.id.slice(0, 4);
+          $('#roomBlock').append(column + "<br />");
+          e.target.style.backgroundColor = 'yellow';
+        }
+        else{
+          if(e.target.id.slice(0,4) != column){
+            alert("One booking at a time please");
+          }
+          else{
+            slotsBooked++;
+            makePending(e.target);
+          }
+        }
       }
       else{
         alert("D!bs only allows you to have 3 hours reserved at a time")
