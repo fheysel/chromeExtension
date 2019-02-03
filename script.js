@@ -13,6 +13,9 @@ function clickReact(e){
       e.target.style.backgroundColor = 'green';
       slotsBooked--;
     }
+    else if(e.target.style.backgroundColor == 'red'){
+      //do nothing
+    }
     else{
       if(slotsBooked < 3){
         slotsBooked++;
@@ -22,12 +25,9 @@ function clickReact(e){
         alert("D!bs only allows you to have 3 hours reserved at a time")
       }
     }
-
-    // alert("hello " + e.target.id + " poop " + e.target.className);
   }
   e.stopPropagation;
 }
-
 
 
 ////////////////DATE/////////////////
@@ -69,44 +69,69 @@ for(i=0; i<14; i++){
 
 
 //////////////////////API//////////////////////////////////////
-$(document).ready(function () {
-    var roomID = 3;
-    var dayOfSearch = "2-2-2019";
-    var parsedStartTime;
-    var parsedEndTime;
-    var blocks;
-    var slotID;
-    var roomHalf;
+var selectorButton = document.getElementById("selectorButton");
+selectorButton.addEventListener("click", newDay, false);
 
-    var i;
+function newDay(e){
+  var selected = document.getElementById('dateSelector');
+  var dateSelected = selected.value;
 
-    for(roomID=1; roomID < 41; roomID++){
-      $.getJSON("https://queensu.evanced.info/dibsAPI/reservations/"+dayOfSearch+ "/"+roomID,
-          function processData(jsonData) {
+    $('#roomBlock').append("Selected: " + dateSelected + "<br />");
 
-              // Loop through each data block
-              $.each(jsonData, function (object, objectData) {
-                  parsedStartTime = objectData.StartTime.slice(11, 13) - 7;//earliest booking is at 7
-                  parsedEndTime = objectData.EndTime.slice(11,13) - 8;//end time one less as it specifies when its available up to
+  loadNewDay("2-7-2019");
+  e.stopPropagation;
+}
 
-                  roomHalf = "r" + objectData.SpaceName.slice(4,7);
+function loadNewDay(day){
+  var elements = document.body.getElementsByTagName('div');
 
-                  blocks = parsedEndTime - parsedStartTime;
-
-                  for(i = parsedStartTime; i<=parsedEndTime; i++){
-                      slotID = roomHalf + "t" + i;
-
-                      document.getElementById(slotID).style.backgroundColor = "red";
-                      $('#roomBlock').append("SlotID: " + slotID + "<br />");
-                  }
-
-                  $('#roomBlock').append("Room ID: " + objectData.RoomID + "<br />");
-                  $('#roomBlock').append("Room Name:" + objectData.SpaceName + "<br />")
-                  $('#roomBlock').append("Start Time: " + parsedStartTime + "<br />");
-                  $('#roomBlock').append("End Time: " + parsedEndTime + "<br />");
-                  $('#roomBlock').append("<br />");
-              });
-          });
+  for(var i=0; i<elements.length; i++){
+    if(elements[i].className == 'slot'){
+      elements[i].style.backgroundColor = "green";
     }
+  }
 
+  var roomID;
+  var parsedStartTime;
+  var parsedEndTime;
+  var blocks;
+  var slotID;
+  var roomHalf;
+  var i;
+
+
+  $('#roomBlock').append("Day selected: " + day + "<br />");
+  for(roomID=1; roomID < 41; roomID++){
+    $.getJSON("https://queensu.evanced.info/dibsAPI/reservations/"+day+ "/"+roomID,
+        function processData(jsonData) {
+
+            // Loop through each data block
+            $.each(jsonData, function (object, objectData) {
+                parsedStartTime = objectData.StartTime.slice(11, 13) - 7;//earliest booking is at 7
+                parsedEndTime = objectData.EndTime.slice(11,13) - 8;//end time one less as it specifies when its available up to
+
+                roomHalf = "r" + objectData.SpaceName.slice(4,7);
+                blocks = parsedEndTime - parsedStartTime;
+
+                for(i = parsedStartTime; i<=parsedEndTime; i++){
+                    slotID = roomHalf + "t" + i;
+                    elem = document.getElementById(slotID);
+                    if(elem != null){
+                      elem.style.backgroundColor = "red";
+                    }
+                    //$('#roomBlock').append("SlotID: " + slotID + "<br />");
+                }
+
+                // $('#roomBlock').append("Room ID: " + objectData.RoomID + "<br />");
+                // $('#roomBlock').append("Room Name:" + objectData.SpaceName + "<br />")
+                // $('#roomBlock').append("Start Time: " + parsedStartTime + "<br />");
+                // $('#roomBlock').append("End Time: " + parsedEndTime + "<br />");
+                // $('#roomBlock').append("<br />");
+            });
+        });
+  }
+}
+
+$(document).ready(function () {
+    loadNewDay("2-2-2019");
 });

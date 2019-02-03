@@ -27,6 +27,7 @@
 .small-room {
   text-align: center;
   color: black;
+  padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
   background-color: #E67E22;
@@ -35,6 +36,7 @@
 .medium-room {
   text-align: center;
   color: black;
+  padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
   background-color: #01FF70;
@@ -43,6 +45,7 @@
 .large-room {
   text-align: center;
   color: black;
+  padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
   background-color: #0074D9;
@@ -51,6 +54,7 @@
 .xlarge-room {
   text-align: center;
   color: black;
+  padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
   background-color: #F012BE;
@@ -59,6 +63,7 @@
 .topColumn {
   text-align: center;
   color: black;
-  /* border-radius: 5px;
-  border: 2px black solid; */
+  font-weight: bold;
+  margin-left: 5px;
+  margin-right: 5px;
 }
