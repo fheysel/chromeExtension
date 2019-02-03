@@ -9,12 +9,18 @@ var pendingSlot3 = null;
 function makePending(slot){
   slotsBooked++;
   slot.style.backgroundColor = 'yellow';
+  if(slotsBooked == 1){
+    document.getElementById('shotgun').style.visibility = "visible";
+  }
 }
 
 function removePending(slot){
   if(slot != null){
     slot.style.backgroundColor = 'green';
     slotsBooked--;
+    if(slotsBooked == 0){
+      document.getElementById('shotgun').style.visibility = "hidden";
+    }
   }
 }
 
@@ -33,7 +39,7 @@ function switchStart(slot){
 }
 
 function getCol(slot){//finds the column (room number) of the slot
-    return parseInt(slot.id.slice(-1));
+    return parseInt(slot.id.slice(5));
 }
 
 function getRow(slot){//find the row (time slot)

@@ -1,13 +1,21 @@
 /* Add a black background color to the search bar */
-
-
-.shotgun{
-    visibility: visible;
+.dateSelector{
+  display: flex;
+  justify-content: center;
+  /* align-items: center;
+  text-align: center; */
 }
 
-.search-row {
-  overflow: hidden;
-  background-color: #e9e9e9;
+#shotgun{
+  visibility: hidden;
+}
+
+#selector{
+  margin: 20px;
+}
+
+.btn{
+  margin: 20px;
 }
 
 .container {
@@ -18,7 +26,6 @@
   display: grid;
   width: auto;
   height: auto;
-  margin: 10px;
   grid-template: repeat(34, 1fr) / repeat(17, 1fr);
 }
 
@@ -26,6 +33,7 @@
   text-align: center;
   background-color: green;
   color: black;
+  padding: 10px;
   border-radius: 5px;
   border: 2px white solid;
 }
@@ -70,6 +78,11 @@
   text-align: center;
   color: black;
   font-weight: bold;
-  margin-left: 5px;
-  margin-right: 5px;
+  /* margin-left: 5px;
+  margin-right: 5px; */
+  padding-left: 5px;
+  padding-right: 5px;
+  position: sticky;
+  top: 0;
+  background-color: white;
 }
