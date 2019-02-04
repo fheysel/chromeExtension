@@ -1,13 +1,30 @@
 /* Add a black background color to the search bar */
+html{
+    font-family: 'Montserrat', sans-serif;
+}
+
 .dateSelector{
   display: flex;
-  justify-content: center;
+  justify-content: right;
   /* align-items: center;
   text-align: center; */
 }
 
 #shotgun{
   visibility: hidden;
+  display: flex;
+  justify-content: right;
+  color: white;
+  background-color: #1C79F0;
+  border-radius: 7px;
+  border: 1px #1C79F0 solid;
+}
+
+#selectorButton{
+  color:#1C79F0;
+  background-color: white;
+  border-radius: 7px;
+  border: 1px #1C79F0 solid;
 }
 
 #selector{
@@ -44,7 +61,7 @@
   padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
-  background-color: #E67E22;
+  background-color: #FFAA39;
 }
 
 .medium-room {
@@ -53,7 +70,7 @@
   padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
-  background-color: #01FF70;
+  background-color: #E84631;
 }
 
 .large-room {
@@ -62,7 +79,7 @@
   padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
-  background-color: #0074D9;
+  background-color: #E81AFF;
 }
 
 .xlarge-room {
@@ -71,7 +88,7 @@
   padding: 2px;
   border-radius: 4px;
   border: 2px white solid;
-  background-color: #F012BE;
+  background-color: #2B23E8;
 }
 
 .topColumn {
@@ -85,13 +102,51 @@
   position: sticky;
   top: 0;
   background-color: white;
+  border-radius: 2px;
+  border: 1px white solid;
 }
 
 .title{
-  font-family: 'Montserrat', sans-seri;
+  font-family: 'Montserrat', sans-serif;
   font-weight: light;
   font-size: 128px;
   text-align: center;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+.legend{
+  display: grid;
+  width: auto;
+  height: auto;
+  grid-template: repeat(1, 1fr) / repeat(8, 1fr);
+}
+
+.colBox{
+  width: 40px;
+  height: 40px;
+  border-radius: 25px;
+  margin-left: 10px;
+}
+
+.leg{
+  font-family: 'Montserrat', sans-serif;
+  font-weight: light;
+  margin-right: 20px;
+}
+
+#L0{
+    background-color:  #FFAA39;
+}
+
+#L1{
+    background-color:  #E84631;
+}
+
+#L2{
+    background-color:  #E81AFF;
+}
+
+#L3{
+    background-color:  #2B23E8;
 }
