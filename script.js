@@ -178,8 +178,7 @@ for(i=0; i<14; i++){
   // var opt = document.createElement("option");
   //  opt.value = dateArray[i];
   //  opt.innerHTML = dateArray[i]; // whatever property it has
-   console.log(dateArray[i]);
-
+  //console.log(dateArray[i]);
    // then append it to the select element
    //newSelect.appendChild(opt);
 }
@@ -202,12 +201,42 @@ function newDay(e){
   e.stopPropagation;
 }
 
+
 function loadNewDay(day){
   var elements = document.body.getElementsByTagName('div');
+  var date = new Date(day);
+  var topColumn = document.getElementsByClassName("topColumn");
+  var time;
+  var opacity;
 
+  if(date.getDay() == 0 || date.getDay() == 6){//adjust calendar for weekend settings
+    for(var i=0; i < 16; i++){//for every element in topColumn change time to be on hour not on half hour
+        time = topColumn[i].innerHTML;
+        time = time.substring(0,time.indexOf(':')) + ":00";
+        topColumn[i].innerHTML = time;
+    }
+    opacity = 0.4;
+  }
+  else{//adjust calendar for weekday settings
+    for(var i=0; i < 16; i++){//adjust the time for every other day of week
+        time = topColumn[i].innerHTML;
+        time = time.substring(0,time.indexOf(':')) + ":30";
+        topColumn[i].innerHTML = time;
+    }
+    opacity = 1.0;
+  }
+
+  //load everything as green at start
   for(var i=0; i<elements.length; i++){
     if(elements[i].className == 'slot'){
       elements[i].style.backgroundColor = "green";
+
+      if(elements[i].id.slice(5) >= 0 && elements[i].id.slice(5) < 3){
+        elements[i].style.opacity = opacity;
+      }
+      else{
+        elements[i].style.opacity = 1.0;
+      }
     }
   }
 
@@ -254,6 +283,9 @@ function loadNewDay(day){
   }
 }
 
+///////ON START UP//////////////////
 $(document).ready(function () {
-    loadNewDay(dateArray[0]);
+  var today = dateArray[0];
+  loadNewDay(today);
+
 });
