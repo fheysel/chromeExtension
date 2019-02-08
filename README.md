@@ -1,2 +1,2 @@
-# chromeExtension
-Chrome extension to create a more user-friendly format of Queen's ILC room booking system.
+# Call Shotgun
+A Chrome extension for better ILC room booking.
