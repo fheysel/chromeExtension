@@ -47,7 +47,7 @@ function getRow(slot){//find the row (time slot)
 }
 
 var theParent = document.getElementById("theCalendar");
-//theParent.addEventListener("click", clickReact, false);
+theParent.addEventListener("click", clickReact, false);
 
 function clickReact(e){
   if (e.target != e.currentTarget && e.target.className == 'slot') {//Make sure this is part of the calendar
@@ -233,7 +233,7 @@ function loadNewDay(day){
     if(elements[i].className == 'slot'){
       elements[i].style.backgroundColor = "green";
 
-      if(elements[i].id.slice(5) >= 0 && elements[i].id.slice(5) < 3){
+      if(elements[i].id.slice(5) >= 0 && elements[i].id.slice(5) < 3){//if the time block is between 0 and 2 ie it is the first 3 hours
         elements[i].style.opacity = opacity;
       }
       else{
@@ -242,10 +242,10 @@ function loadNewDay(day){
     }
   }
 
-  var roomID = 1;
+  var roomID;
   var parsedStartTime;
   var parsedEndTime;
-  var blocks;
+  var blocks;//number of hours in a row that are booked
   var slotID;
   var roomHalf;
   var i;
@@ -259,27 +259,37 @@ function loadNewDay(day){
         function processData(jsonData) {
             // Loop through each data block
             $.each(jsonData, function (object, objectData) {
-                parsedStartTime = objectData.StartTime.slice(11, 13) - 7;//earliest booking is at 7
+                parsedStartTime = objectData.StartTime.slice(11, 13) - 7;//earliest booking is at 7 therefore a 7am booking is time 0
                 parsedEndTime = objectData.EndTime.slice(11,13) - 8;//end time one less as it specifies when its available up to
 
-                roomHalf = "r" + objectData.SpaceName.slice(4,7);
+                roomHalf = "r" + objectData.SpaceName.slice(4,7);//gets just the room's number and concatinates it with an r
                 blocks = parsedEndTime - parsedStartTime;
 
+                // $('#roomBlock').append("Room Name:" + objectData.SpaceName + "<br />");
+                // $('#roomBlock').append("Room Half:" + roomHalf + "<br />");
+                // $('#roomBlock').append("Start Time: " + parsedStartTime + "<br />");
+                // $('#roomBlock').append("End Time: " + parsedEndTime + "<br />");
                 for(i = parsedStartTime; i<=parsedEndTime; i++){
                     slotID = roomHalf + "t" + i;
+                    //$('#roomBlock').append("Slot ID: " + slotID + "<br />");
                     elem = document.getElementById(slotID);
 
                     if(elem != null){
                       elem.style.backgroundColor = "red";
                     }
+                    else{
+                      $('#roomBlock').append("SlotID: " + slotID + "<br />");
+                      $('#roomBlock').append("<br />");
+                    }
                     //$('#roomBlock').append("SlotID: " + slotID + "<br />");
                 }
-
+                //
+                // $('#roomBlock').append("Day: " + dayString + "<br />");
                 // $('#roomBlock').append("Room ID: " + objectData.RoomID + "<br />");
                 // $('#roomBlock').append("Room Name:" + objectData.SpaceName + "<br />")
                 // $('#roomBlock').append("Start Time: " + parsedStartTime + "<br />");
                 // $('#roomBlock').append("End Time: " + parsedEndTime + "<br />");
-                // $('#roomBlock').append("<br />");
+                //$('#roomBlock').append("<br />");
             });
         });
   }
@@ -289,5 +299,4 @@ function loadNewDay(day){
 $(document).ready(function () {
   var today = dateArray[0];
   loadNewDay(today);
-
 });

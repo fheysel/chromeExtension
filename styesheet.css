@@ -43,7 +43,7 @@ html{
   display: grid;
   width: auto;
   height: auto;
-  grid-template: repeat(34, 1fr) / repeat(17, 1fr);
+  grid-template: repeat(35, 1fr) / repeat(17, 1fr);
 }
 
 .slot {
