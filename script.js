@@ -9,12 +9,18 @@ var pendingSlot3 = null;
 function makePending(slot){
   slotsBooked++;
   slot.style.backgroundColor = 'yellow';
+  if(slotsBooked == 1){
+    document.getElementById('shotgun').style.visibility = "visible";
+  }
 }
 
 function removePending(slot){
   if(slot != null){
     slot.style.backgroundColor = 'green';
     slotsBooked--;
+    if(slotsBooked == 0){
+      document.getElementById('shotgun').style.visibility = "hidden";
+    }
   }
 }
 
@@ -33,7 +39,7 @@ function switchStart(slot){
 }
 
 function getCol(slot){//finds the column (room number) of the slot
-    return parseInt(slot.id.slice(-1));
+    return parseInt(slot.id.slice(5));
 }
 
 function getRow(slot){//find the row (time slot)
@@ -41,98 +47,100 @@ function getRow(slot){//find the row (time slot)
 }
 
 var theParent = document.getElementById("theCalendar");
-theParent.addEventListener("click", clickReact, false);
+//theParent.addEventListener("click", clickReact, false);
 
 function clickReact(e){
   if (e.target != e.currentTarget && e.target.className == 'slot') {//Make sure this is part of the calendar
-    if(e.target.style.backgroundColor == 'yellow'){//handle unclicking a pending slot
-      if(slotsBooked == 1){
-        removePending(e.target);
-        pendingSlot1 = null;
-      }
-      else if(slotsBooked == 2){
-        if(e.target.id == pendingSlot2.id){
+    if(e.target.style.opacity == 1.0){
+      if(e.target.style.backgroundColor == 'yellow'){//handle unclicking a pending slot
+        if(slotsBooked == 1){
           removePending(e.target);
-          pendingSlot2 = null;
+          pendingSlot1 = null;
         }
-        else{//removing the first, shift
-          removePending(pendingSlot1);
-          pendingSlot1 = pendingSlot2;
-          pendingSlot2 = null;
+        else if(slotsBooked == 2){
+          if(e.target.id == pendingSlot2.id){
+            removePending(e.target);
+            pendingSlot2 = null;
+          }
+          else{//removing the first, shift
+            removePending(pendingSlot1);
+            pendingSlot1 = pendingSlot2;
+            pendingSlot2 = null;
+          }
         }
-      }
-      else{//3 slots booked therefore handle case when the middle is removed
-        var colSum = getCol(pendingSlot1) + getCol(pendingSlot2) + getCol(pendingSlot3);
-        var middleSlotCol = colSum / 3;
+        else{//3 slots booked therefore handle case when the middle is removed
+          var colSum = getCol(pendingSlot1) + getCol(pendingSlot2) + getCol(pendingSlot3);
+          var middleSlotCol = colSum / 3;
 
-        if(getCol(e.target) == middleSlotCol){
-          if(e.target.id == pendingSlot1.id){//handle removing middle
-            switchStart(pendingSlot2);
+          if(getCol(e.target) == middleSlotCol){
+            if(e.target.id == pendingSlot1.id){//handle removing middle
+              switchStart(pendingSlot2);
+            }
+            else{
+              switchStart(pendingSlot1);//start back at 1st selection
+            }
+          }
+          else if(e.target.id == pendingSlot1.id){
+            removePending(pendingSlot1);
+            pendingSlot1 = pendingSlot2;
+            pendingSlot2 = pendingSlot3;
+            pendingSlot3 = null;
+          }
+          else if(e.target.id == pendingSlot2.id){
+            removePending(pendingSlot2);
+            pendingSlot2 = pendingSlot3;
+            pendingSlot3 = null;
+          }
+          else if(e.target.id == pendingSlot3.id){
+            removePending(pendingSlot3);
+            pendingSlot3 = null;
           }
           else{
-            switchStart(pendingSlot1);//start back at 1st selection
+            alert("Something is rotten in the state of Denmark")
           }
-        }
-        else if(e.target.id == pendingSlot1.id){
-          removePending(pendingSlot1);
-          pendingSlot1 = pendingSlot2;
-          pendingSlot2 = pendingSlot3;
-          pendingSlot3 = null;
-        }
-        else if(e.target.id == pendingSlot2.id){
-          removePending(pendingSlot2);
-          pendingSlot2 = pendingSlot3;
-          pendingSlot3 = null;
-        }
-        else if(e.target.id == pendingSlot3.id){
-          removePending(pendingSlot3);
-          pendingSlot3 = null;
-        }
-        else{
-          alert("Something is rotten in the state of Denmark")
         }
       }
-    }
-    else if(e.target.style.backgroundColor == 'red'){
-      //do nothing
-    }
-    else{//therefore green
-      if(slotsBooked < 3){
-        if(slotsBooked == 0){
-          pendingSlot1 = e.target;
-          row = getRow(pendingSlot1);
-          makePending(pendingSlot1);
-        }
-        else{//2nd or 3rd selection
-          if(getRow(e.target) != row){// different column, remove current pending slots and make selected pendingSlot1
-            //alert(row + getRow(e.target));
-            switchStart(e.target);
+      else if(e.target.style.backgroundColor == 'red'){
+        //do nothing
+      }
+      else{//therefore green
+        if(slotsBooked < 3){
+          if(slotsBooked == 0){
+            pendingSlot1 = e.target;
+            row = getRow(pendingSlot1);
+            makePending(pendingSlot1);
           }
-          else{//same row
-            if(slotsBooked == 1){//Second booking, make sure adjacent
-              if(Math.abs(getCol(e.target) - getCol(pendingSlot1)) == 1){
-                pendingSlot2 = e.target;
-                makePending(pendingSlot2);
-              }
-              else{//not adjacent but same row
-                switchStart(e.target);
-              }
+          else{//2nd or 3rd selection
+            if(getRow(e.target) != row){// different column, remove current pending slots and make selected pendingSlot1
+              //alert(row + getRow(e.target));
+              switchStart(e.target);
             }
-            else{//Third Booking
-              if(Math.abs(getCol(e.target) - getCol(pendingSlot1)) == 1 || Math.abs(getCol(e.target) - getCol(pendingSlot2)) == 1){//if adj to current block
-                pendingSlot3 = e.target;
-                makePending(pendingSlot3);
+            else{//same row
+              if(slotsBooked == 1){//Second booking, make sure adjacent
+                if(Math.abs(getCol(e.target) - getCol(pendingSlot1)) == 1){
+                  pendingSlot2 = e.target;
+                  makePending(pendingSlot2);
+                }
+                else{//not adjacent but same row
+                  switchStart(e.target);
+                }
               }
-              else{//not a part of current block
-                switchStart(e.target);
+              else{//Third Booking
+                if(Math.abs(getCol(e.target) - getCol(pendingSlot1)) == 1 || Math.abs(getCol(e.target) - getCol(pendingSlot2)) == 1){//if adj to current block
+                  pendingSlot3 = e.target;
+                  makePending(pendingSlot3);
+                }
+                else{//not a part of current block
+                  switchStart(e.target);
+                }
               }
             }
           }
         }
-      }
-      else{//already 3 pending
-        switchStart(e.target);
-        //alert("D!bs only allows you to have 3 hours reserved at a time")
+        else{//already 3 pending
+          switchStart(e.target);
+          //alert("D!bs only allows you to have 3 hours reserved at a time")
+        }
       }
     }
   }
@@ -172,8 +180,7 @@ for(i=0; i<14; i++){
   // var opt = document.createElement("option");
   //  opt.value = dateArray[i];
   //  opt.innerHTML = dateArray[i]; // whatever property it has
-   console.log(dateArray[i]);
-
+  //console.log(dateArray[i]);
    // then append it to the select element
    //newSelect.appendChild(opt);
 }
@@ -196,12 +203,42 @@ function newDay(e){
   e.stopPropagation;
 }
 
+
 function loadNewDay(day){
   var elements = document.body.getElementsByTagName('div');
+  var date = new Date(day);
+  var topColumn = document.getElementsByClassName("topColumn");
+  var time;
+  var opacity;
 
+  if(date.getDay() == 0 || date.getDay() == 6){//adjust calendar for weekend settings
+    for(var i=0; i < 16; i++){//for every element in topColumn change time to be on hour not on half hour
+        time = topColumn[i].innerHTML;
+        time = time.substring(0,time.indexOf(':')) + ":00";
+        topColumn[i].innerHTML = time;
+    }
+    opacity = 0.4;
+  }
+  else{//adjust calendar for weekday settings
+    for(var i=0; i < 16; i++){//adjust the time for every other day of week
+        time = topColumn[i].innerHTML;
+        time = time.substring(0,time.indexOf(':')) + ":30";
+        topColumn[i].innerHTML = time;
+    }
+    opacity = 1.0;
+  }
+
+  //load everything as green at start
   for(var i=0; i<elements.length; i++){
     if(elements[i].className == 'slot'){
       elements[i].style.backgroundColor = "green";
+
+      if(elements[i].id.slice(5) >= 0 && elements[i].id.slice(5) < 3){
+        elements[i].style.opacity = opacity;
+      }
+      else{
+        elements[i].style.opacity = 1.0;
+      }
     }
   }
 
@@ -248,6 +285,9 @@ function loadNewDay(day){
   }
 }
 
+///////ON START UP//////////////////
 $(document).ready(function () {
-    loadNewDay(dateArray[0]);
+  var today = dateArray[0];
+  loadNewDay(today);
+
 });

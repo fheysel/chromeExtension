@@ -5,15 +5,28 @@
     <meta charset="utf-8">
 
     <link rel='stylesheet' type='text/css' href='styesheet.css'>
-
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
 
   <body>
-    <div class="jumbotron text-center">
-      <h1>D!Bs Booking System</h1>
-      <p>But Better</p>
+    <div class="title">
+      <h1>shotgun > dibs</h1>
+    </div>
+
+    <div class="legend">
+      <div class="colBox" id="L0"></div>
+      <div class="leg">Small (2-6)</div>
+
+      <div class="colBox" id="L1"></div>
+      <div class="leg">Medium (3-8)</div>
+
+      <div class="colBox" id="L2"></div>
+      <div class="leg">Large (4-10)</div>
+
+      <div class="colBox" id="L3"></div>
+      <div class="leg">X-Large (11-20)</div>
     </div>
 
     <div class="dateSelector">
@@ -33,8 +46,8 @@
         <option value="t12"></option>
         <option value="t13"></option>
       </select>
-        <button id="selectorButton">Select Day</button>
-        <button id="shotgun">Call shotgun!</button>
+        <button class="btn btn-primary" id="selectorButton">Select Day</button>
+        <button class="btn btn-light" id="shotgun">Call shotgun!</button>
     </div>
 
 
@@ -442,7 +455,7 @@
       <!--Large Rooms-->
       <div class="large-room">113</div>
         <div class="slot" id="r113t0"></div>
-        <div class="slot" id="r113113t1"></div>
+        <div class="slot" id="r113t1"></div>
         <div class="slot" id="r113t2"></div>
         <div class="slot" id="r113t3"></div>
         <div class="slot" id="r113t4"></div>
@@ -658,6 +671,7 @@
         <div class="slot" id="r111t15"></div>
     </div>
 
+    <!--  roomBlock is for testing purposes-->
     <div id="roomBlock"></div>
 
     <script src="script.js"></script>
